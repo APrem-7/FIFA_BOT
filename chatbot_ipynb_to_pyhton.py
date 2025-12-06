@@ -244,7 +244,7 @@ from main_func import ask_fifa_bot
 # print(ask_fifa_bot("What were the possession stats for Japan vs Croatia?", "new_user_456"))
 
 # # %%
-# print(ask_fifa_bot("Tell me about Brazil vs South Korea match", "new_user_023"))
+print(ask_fifa_bot("Tell me about Brazil vs South Korea match", "new_user_023"))
 
 # %% [markdown]
 # HElllo

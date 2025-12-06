@@ -9,4 +9,4 @@ def ask_fifa_bot(message: str, thread_id: str = "default") -> str:
     return result["messages"][-1].content
 
 
-ask_fifa_bot("Tell me about Brazil vs South Korea match", "new_user_023")
+print(ask_fifa_bot("Tell me about Brazil vs South Korea match", "new_user_023"))
