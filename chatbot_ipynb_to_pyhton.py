@@ -171,28 +171,28 @@ agent = create_agent(
 )
 
 # %%
-config={"configurable": {"thread_id": "9"}}
+# config={"configurable": {"thread_id": "9"}}
 
-result=agent.invoke({
-    "messages":[{"role":"user","content":"Hey I am Ananda Prem How are you doing"}]
-},config)
+# result=agent.invoke({
+#     "messages":[{"role":"user","content":"Hey I am Ananda Prem How are you doing"}]
+# },config)
 
-resulted=agent.invoke({
-    "messages":[{"role":"user","content":"How Did Urugay Perform in this World Cup"}]
-},config)
+# resulted=agent.invoke({
+#     "messages":[{"role":"user","content":"How Did Urugay Perform in this World Cup"}]
+# },config)
 
-result_2=agent.invoke({
-    "messages":[{"role":"user","content":"What would you say about the key moment where their fate in the worldcup was decided"}]
-},config)
+# result_2=agent.invoke({
+#     "messages":[{"role":"user","content":"What would you say about the key moment where their fate in the worldcup was decided"}]
+# },config)
 
 
 
 # %%
-print("Result 1:")
-print(resulted["messages"][-1].content)
+# print("Result 1:")
+# print(resulted["messages"][-1].content)
 
-print("\nResult 2:")
-print(result_2["messages"][-1].content)
+# print("\nResult 2:")
+# print(result_2["messages"][-1].content)
 
 # print("\nResult 3:")
 # print(result["messages"][-1].content)
@@ -244,7 +244,7 @@ from main_func import ask_fifa_bot
 # print(ask_fifa_bot("What were the possession stats for Japan vs Croatia?", "new_user_456"))
 
 # # %%
-print(ask_fifa_bot("Tell me about Brazil vs South Korea match", "new_user_023"))
+# print(ask_fifa_bot("Tell me about Brazil vs South Korea match", "new_user_023"))
 
 # %% [markdown]
 # HElllo
