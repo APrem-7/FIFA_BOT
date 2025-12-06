@@ -1,0 +1,76 @@
+from langchain_core.documents import Document
+from langchain_community.vectorstores import FAISS
+from langchain_ollama import OllamaEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+def store_agent_responses_with_chunking(responses_dict, model_name="llama3"):
+    """
+    Store agent responses in a FAISS vector store using Ollama embeddings
+    with recursive text splitting for better chunk management
+    
+    Args:
+        responses_dict: Dictionary with response names as keys and response content as values
+        model_name: Ollama model to use for embeddings (default: llama3)
+    
+    Returns:
+        vector_store: FAISS vector store object
+    """
+    
+    # Initialize Ollama embeddings
+    embeddings = OllamaEmbeddings(model=model_name)
+    
+    # Initialize recursive character text splitter
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=500,           # Size of each chunk
+        chunk_overlap=100,        # Overlap between chunks to maintain context
+        separators=["\n\n", "\n", ". ", " ", ""]  # Split on these delimiters in order
+    )
+    
+    # Create Document objects and chunk them
+    docs = []
+    for response_name, response_content in responses_dict.items():
+        # Split the text into chunks
+        chunks = text_splitter.split_text(response_content)
+        
+        # Create documents from chunks
+        for i, chunk in enumerate(chunks):
+            doc = Document(
+                page_content=chunk,
+                metadata={
+                    "response_type": response_name,
+                    "source": "agent_response",
+                    "chunk_index": i,
+                    "total_chunks": len(chunks)
+                }
+            )
+            docs.append(doc)
+    
+    # Create FAISS vector store
+    vector_store = FAISS.from_documents(docs, embedding=embeddings)
+    
+    print(f"✅ Successfully stored {len(docs)} chunks from {len(responses_dict)} responses!")
+    return vector_store
+
+
+# Usage example
+responses = {
+    "portugal_vs_morocco": result_3["messages"][-1].content,
+    "possession_stats": result_2["messages"][-1].content,
+    "uruguay_performance": resulted["messages"][-1].content,
+}
+
+# Create vector store with chunking
+response_vector_store = store_agent_responses_with_chunking(responses)
+
+# Create retriever
+response_retriever = response_vector_store.as_retriever(
+    search_type="similarity",
+    search_kwargs={"k": 5}
+)
+
+# Test searching through chunked responses
+search_results = response_retriever.invoke("possession statistics")
+for doc in search_results:
+    print(f"Response: {doc.metadata['response_type']} (chunk {doc.metadata['chunk_index']})")
+    print(f"Content: {doc.page_content[:200]}...")
+    print("-" * 50)
