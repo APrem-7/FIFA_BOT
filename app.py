@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from bot_logic import get_bot_reply  # 🚨 import the function from your new file
+from chatbot.ipynb import ask_fifa_bot  # 🚨 import the function from your new file
 
 app = FastAPI()
 
