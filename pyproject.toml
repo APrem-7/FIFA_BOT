@@ -5,11 +5,13 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "active>=0.0.5a0",
     "faiss-cpu>=1.13.0",
     "fastapi>=0.123.10",
     "langchain>=1.1.0",
     "langchain-community>=0.4.1",
     "langchain-ollama>=1.0.0",
+    "langchain-text-splitters>=1.0.0",
     "langgraph>=1.0.4",
     "matplotlib>=3.10.7",
     "numpy>=2.3.5",
@@ -19,5 +21,7 @@ dependencies = [
     "python-multipart>=0.0.20",
     "requests>=2.32.5",
     "seaborn>=0.13.2",
+    "semantic-chunkers>=0.1.1",
+    "semantic-router[local]>=0.1.12",
     "uvicorn>=0.38.0",
 ]
