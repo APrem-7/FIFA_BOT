@@ -9,6 +9,7 @@ dependencies = [
     "faiss-cpu>=1.13.0",
     "fastapi>=0.123.10",
     "langchain>=1.1.0",
+    "langchain-cerebras>=0.8.2",
     "langchain-community>=0.4.1",
     "langchain-ollama>=1.0.0",
     "langchain-text-splitters>=1.0.0",
